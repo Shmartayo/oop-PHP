@@ -32,13 +32,44 @@
 
         // Creating a setter to update a user Email
         public function setEmail($email){
-            $this -> email = $email;
+            if(strpos($email, '@') > -1){
+                $this -> email = $email;
+            }
+        }
+
+        public function addFriend(){
+            echo $this -> name . ' added new friend';
         }
     }
+
+    class Admin extends User {
+        public $level;
+
+        public function __construct($name, $email, $level)
+        {
+            $this -> level = $level;
+            parent ::__construct($name,$email);
+        }
+
+        public function isAdmin(){
+            if ($this-> level){
+               echo  "An admin";
+            } else{
+                echo 'not admin';
+            }
+        }
+
+
+    }
+
     //Instatiating an object
     $userOne = new User('Ayokunle', 'kunlexzy4@gmail.com');
+    $userTwo = new Admin('Shmartayo', 'kunlexzy5@gmail.com',5);
 
     //Getting Results 
-    echo $userOne -> getName() . '<br>';
-    echo $userOne -> getEmail();
+    echo $userTwo -> getName() . '<br>';
+    echo $userTwo -> getEmail() . '<br>';
+    echo $userTwo -> level . '<br>';
+    echo $userTwo-> isAdmin();
+    
 ?>
