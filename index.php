@@ -40,26 +40,26 @@
         public function addFriend(){
             echo $this -> name . ' added new friend';
         }
+
+        public function isAdmin(){
+            if ($this-> role == 'admin'){
+               echo  "An admin";
+            } else{
+                echo 'not admin';
+            }
+        }
     }
 
     class Admin extends User {
         public $level;
+        public $role = 'admin';
+
 
         public function __construct($name, $email, $level)
         {
             $this -> level = $level;
             parent ::__construct($name,$email);
         }
-
-        public function isAdmin(){
-            if ($this-> level){
-               echo  "An admin";
-            } else{
-                echo 'not admin';
-            }
-        }
-
-
     }
 
     //Instatiating an object
@@ -70,6 +70,13 @@
     echo $userTwo -> getName() . '<br>';
     echo $userTwo -> getEmail() . '<br>';
     echo $userTwo -> level . '<br>';
-    echo $userTwo-> isAdmin();
+    echo $userTwo-> isAdmin() . '<br>';
+    echo $userTwo-> role  . '<br>';
+
+
+    echo $userOne -> getName() . '<br>';
+    echo $userOne -> getEmail() . '<br>';
+    echo $userOne-> isAdmin() . '<br>';
+    echo $userOne-> role;
     
 ?>
