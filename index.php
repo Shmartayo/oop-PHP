@@ -1,110 +1,27 @@
 <?php 
 
     // Creating a class
-    class User {
+    class Weather {
+        public static $tempConditions = ['cold','mild','warm'];
 
-        // Using a private access modifier 
-        private $name;
-        protected $email;
-        public $role = 'member';
-
-        //Creating a constructor to dynamically populate user data
-        public function __construct($name, $email)
-        {
-            $this -> name = $name;
-            $this -> email = $email;
+        public static function celsiusToFarenheit($c){
+            return $c * 9/5 +32;
         }
 
-        //Creating a destruct to remove any deleted instance of an object
-        public function __destruct()
-        {
-            echo $this -> name .' was removed <br>';
-        }
-
-        // Callimg a clome magic method whemever a clome of am imstamce is made
-        public function __clone()
-        {
-            echo $this-> name . ' was cloned <br>';
-            $this ->name = $this->name . ' 2';
-        }
-        
-
-        //Creating a getter for user Name
-        public function getName(){
-            return $this -> name;
-        }
-
-        //Creating a getter for user Email
-        public function getEmail(){
-            return $this -> email;
-        }
-
-        // Creating a setter to update a user Name
-        public function setName($name){
-            $this -> name = $name;
-        }
-
-        // Creating a setter to update a user Email
-        public function setEmail($email){
-            if(strpos($email, '@') > -1){
-                $this -> email = $email;
+        public static function determineTempCondition($f){
+            if ($f < 20){
+                return self::$tempConditions[0];
+            } elseif($f < 70){
+                return self::$tempConditions[1];
+            } else {
+                return self::$tempConditions[2];
             }
-        }
-
-        public function addFriend(){
-            return $this -> name . ' added new friend';
-        }
-
-        public function isAdmin(){
-            if ($this-> role == 'admin'){
-               echo  "An admin";
-            } else{
-                echo 'not admin';
-            }
-        }
-
-        public function message(){
-            return $this -> email . ' sent a new message';
         }
     }
 
-    class Admin extends User {
-        public $level;
-        public $role = 'admin';
+    // print_r(Weather::$tempConditions).'<br>';
+    // echo Weather::celsiusToFarenheit(20);
+    echo Weather::determineTempCondition(19);
 
 
-        public function __construct($name, $email, $level)
-        {
-            $this -> level = $level;
-            parent ::__construct($name,$email);
-        }
-
-        
-        public function message(){
-            return $this -> email .' , an admin, sent a new message';
-        }
-    }
-
-    //Instatiating an object
-    $userOne = new User('Ayokunle', 'kunlexzy4@gmail.com');
-    $userTwo = new Admin('Shmartayo', 'kunlexzy5@gmail.com',5);
-
-    //Getting Results 
-    // echo $userTwo -> getName() . '<br>';
-    // echo $userTwo -> getEmail() . '<br>';
-    // echo $userTwo -> level . '<br>';
-    // echo $userTwo-> isAdmin() . '<br>';
-    // echo $userTwo-> message() . '<br>';
-    // echo $userTwo-> role  . '<br><br>';
-
-
-    // echo $userOne -> getName() . '<br>';
-    // echo $userOne -> getEmail() . '<br>';
-    // echo $userOne-> isAdmin() . '<br>';
-    // echo $userOne-> message() . '<br>';
-    // echo $userOne-> role;
-
-    $userThree = clone($userOne);
-    unset($userOne);
-    
 ?>
