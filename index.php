@@ -15,6 +15,20 @@
             $this -> email = $email;
         }
 
+        //Creating a destruct to remove any deleted instance of an object
+        public function __destruct()
+        {
+            echo $this -> name .' was removed <br>';
+        }
+
+        // Callimg a clome magic method whemever a clome of am imstamce is made
+        public function __clone()
+        {
+            echo $this-> name . ' was cloned <br>';
+            $this ->name = $this->name . ' 2';
+        }
+        
+
         //Creating a getter for user Name
         public function getName(){
             return $this -> name;
@@ -76,18 +90,21 @@
     $userTwo = new Admin('Shmartayo', 'kunlexzy5@gmail.com',5);
 
     //Getting Results 
-    echo $userTwo -> getName() . '<br>';
-    echo $userTwo -> getEmail() . '<br>';
-    echo $userTwo -> level . '<br>';
-    echo $userTwo-> isAdmin() . '<br>';
-    echo $userTwo-> message() . '<br>';
-    echo $userTwo-> role  . '<br><br>';
+    // echo $userTwo -> getName() . '<br>';
+    // echo $userTwo -> getEmail() . '<br>';
+    // echo $userTwo -> level . '<br>';
+    // echo $userTwo-> isAdmin() . '<br>';
+    // echo $userTwo-> message() . '<br>';
+    // echo $userTwo-> role  . '<br><br>';
 
 
-    echo $userOne -> getName() . '<br>';
-    echo $userOne -> getEmail() . '<br>';
-    echo $userOne-> isAdmin() . '<br>';
-    echo $userOne-> message() . '<br>';
-    echo $userOne-> role;
+    // echo $userOne -> getName() . '<br>';
+    // echo $userOne -> getEmail() . '<br>';
+    // echo $userOne-> isAdmin() . '<br>';
+    // echo $userOne-> message() . '<br>';
+    // echo $userOne-> role;
+
+    $userThree = clone($userOne);
+    unset($userOne);
     
 ?>
