@@ -5,7 +5,7 @@
 
         // Using a private access modifier 
         private $name;
-        private $email;
+        protected $email;
         public $role = 'member';
 
         //Creating a constructor to dynamically populate user data
@@ -38,7 +38,7 @@
         }
 
         public function addFriend(){
-            echo $this -> name . ' added new friend';
+            return $this -> name . ' added new friend';
         }
 
         public function isAdmin(){
@@ -47,6 +47,10 @@
             } else{
                 echo 'not admin';
             }
+        }
+
+        public function message(){
+            return $this -> email . ' sent a new message';
         }
     }
 
@@ -60,6 +64,11 @@
             $this -> level = $level;
             parent ::__construct($name,$email);
         }
+
+        
+        public function message(){
+            return $this -> email .' , an admin, sent a new message';
+        }
     }
 
     //Instatiating an object
@@ -71,12 +80,14 @@
     echo $userTwo -> getEmail() . '<br>';
     echo $userTwo -> level . '<br>';
     echo $userTwo-> isAdmin() . '<br>';
-    echo $userTwo-> role  . '<br>';
+    echo $userTwo-> message() . '<br>';
+    echo $userTwo-> role  . '<br><br>';
 
 
     echo $userOne -> getName() . '<br>';
     echo $userOne -> getEmail() . '<br>';
     echo $userOne-> isAdmin() . '<br>';
+    echo $userOne-> message() . '<br>';
     echo $userOne-> role;
     
 ?>
