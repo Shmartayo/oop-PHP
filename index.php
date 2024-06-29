@@ -1,27 +1,35 @@
 <?php 
 
-    // Creating a class
-    class Weather {
-        public static $tempConditions = ['cold','mild','warm'];
-
-        public static function celsiusToFarenheit($c){
-            return $c * 9/5 +32;
-        }
-
-        public static function determineTempCondition($f){
-            if ($f < 20){
-                return self::$tempConditions[0];
-            } elseif($f < 70){
-                return self::$tempConditions[1];
-            } else {
-                return self::$tempConditions[2];
-            }
-        }
+    if(isset($_POST['submit'])){
+        echo 'form submitted';
     }
-
-    // print_r(Weather::$tempConditions).'<br>';
-    // echo Weather::celsiusToFarenheit(20);
-    echo Weather::determineTempCondition(19);
 
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="new-user">
+        <h2>Create new user</h2>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <label for="username"> Username:
+                <input type="text" name="username">
+            </label>
+            <label for="email">Email:
+                <input type="text" name="email">
+            </label>
+
+            <input type="submit" value="submit" name="submit">
+
+        </form>
+    </div>
+    
+</body>
+</html>
