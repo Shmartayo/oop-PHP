@@ -8,7 +8,7 @@
       --a method to validate an email 
       return an error array once all checks are done
     */
-    class userValidator{
+    class UserValidator{
 
         private $data;
         private $errors = array();
@@ -20,7 +20,7 @@
         }
 
         // Create form validator method
-        public function formValidator(){
+        public function validateForm(){
             foreach(self::$fields as $field){
                 if(!array_key_exists($field, $this->data)){
                     trigger_error("$field is not present in data");
@@ -67,10 +67,6 @@
         //Create addError method
         private function addError($key, $val){
             $this->errors[$key] = $val;
-
         }
-
-
-
     }
 ?>
